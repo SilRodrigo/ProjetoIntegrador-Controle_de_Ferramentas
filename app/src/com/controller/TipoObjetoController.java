@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.model.entity.TipoObjeto;
 import com.model.service.TipoObjetoService;
 import java.util.List;
 
@@ -35,5 +36,16 @@ public class TipoObjetoController implements IController {
   @Override
   public String getControllerBaseName() {
     return "TipoObjeto";
+  }
+
+  @Override
+  public boolean findId(int id) {
+    TipoObjeto tipoObjeto = this.tipoObjetoService.getById(id);    
+    if (tipoObjeto == null){
+      System.out.println("\nNao existe esse Id cadastrado!");
+      Entrada.leiaString("Aperte ENTER para continuar...");
+      return false;
+    } 
+    return true;
   }
 }

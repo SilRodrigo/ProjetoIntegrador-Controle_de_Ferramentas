@@ -6,6 +6,8 @@ public interface IController {
   public String[] requestInsert();
 
   public List<String> getAll();
+  
+  public boolean findId(int id);
 
   public String insert(List<String> list);
 

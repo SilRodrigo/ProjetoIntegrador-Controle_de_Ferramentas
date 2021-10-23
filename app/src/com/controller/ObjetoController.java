@@ -1,24 +1,29 @@
 package com.controller;
 
-import com.model.entity.TipoObjeto;
 import com.model.service.ObjetoService;
-import com.model.service.TipoObjetoService;
 import com.util.Texting;
 import java.util.List;
 
 public class ObjetoController implements IController {
 
   ObjetoService objetoService = new ObjetoService();
-  TipoObjetoService TipoObjetoService = new TipoObjetoService();
 
   @Override
   public List<String> getAll() {
     return objetoService.getAllData();
   }
 
+  public List<String> getAll(TipoObjetoController tipoObjetoController) {
+    return objetoService.getAllData(tipoObjetoController.tipoObjetoService);
+  }
+
+  public List<String> getInsertRequiredOnly() {
+    return objetoService.getInsertRequiredOnly();
+  }
+
   @Override
   public String[] requestInsert() {
-    String fields = this.getAll().get(0);
+    String fields = this.getInsertRequiredOnly().get(0);
     return fields.split(";");
   }
 
@@ -30,13 +35,15 @@ public class ObjetoController implements IController {
   @Override
   public String insert(List<String> list) {
     try {
-      TipoObjeto tipoObjeto = TipoObjetoService.getById(
-        Integer.parseInt(list.get(1))
+      objetoService.insert(
+        list.get(1),
+        Integer.parseInt(list.get(0)),
+        false,
+        false
       );
-      if (tipoObjeto == null) throw new Exception();
-      objetoService.insert(list.get(0), tipoObjeto, false, false);
       return Texting.registerSuccessful;
     } catch (Exception e) {
+      System.out.println(e);
       return Texting.registerFailure;
     }
   }
@@ -44,5 +51,11 @@ public class ObjetoController implements IController {
   @Override
   public String getControllerBaseName() {
     return "Objeto";
+  }
+
+  @Override
+  public boolean findId(int id) {
+    // TODO Auto-generated method stub
+    return false;
   }
 }

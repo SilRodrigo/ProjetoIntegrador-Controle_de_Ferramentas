@@ -46,4 +46,10 @@ public class ClienteController implements IController {
   public String getControllerBaseName() {
     return "Cliente";
   }
+
+  @Override
+  public boolean findId(int id) {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }

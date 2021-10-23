@@ -1,6 +1,7 @@
 package com.view;
 
 import com.controller.ClienteController;
+import com.controller.ManutencaoController;
 import com.controller.MenuController;
 import com.controller.ObjetoController;
 import com.controller.TipoObjetoController;
@@ -16,6 +17,7 @@ public class Screen {
   ClienteController cliente = new ClienteController();
   TipoObjetoController tipoObjeto = new TipoObjetoController();
   ObjetoController objeto = new ObjetoController();
+  ManutencaoController manutencao = new ManutencaoController();
   Graphics graphics;
   Navigation navigation;
 
@@ -46,6 +48,10 @@ public class Screen {
       /* ------------------------------------- */
       case CADASTRO_OBJETO:
         cadastroObjetoMenu();
+        break;
+      /* ------------------------------------- */
+      case CADASTRO_MANUTENCAO:
+        cadastroManutencaoMenu();
         break;
       /* ------------------------------------- */
       default:
@@ -103,8 +109,8 @@ public class Screen {
     graphics.displayHeader();
     graphics.displayRegisterOptions();
     graphics.displayRegisters(
-      objeto.getAll(),
-      Arrays.asList(5, 20, 15, 4, 4),
+      objeto.getAll(tipoObjeto),
+      Arrays.asList(5, 15, 20, 10, 15),
       1
     );
     navigation.registerNavigation(objeto, Arrays.asList(tipoObjeto), graphics);
@@ -114,8 +120,8 @@ public class Screen {
     graphics.splitterLine();
     graphics.displayHeader();
     graphics.displayRegisterOptions();
-    graphics.displayRegisters(cliente.getAll(), Arrays.asList(5, 20, 20, 5), 1);
-    navigation.registerNavigation(cliente, null, graphics);
+    graphics.displayRegisters(manutencao.getAll(), Arrays.asList(5, 15), 1);
+    navigation.registerNavigation(manutencao, null, graphics);
   }
 
   private void notImplementedMenu() {

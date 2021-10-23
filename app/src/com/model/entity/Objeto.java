@@ -4,20 +4,20 @@ public class Objeto {
 
   int id;
   String name;
-  TipoObjeto objectType;
+  int objectTypeId;
   boolean borrowed;
   boolean inMaintenance;
 
   public Objeto(
     int id,
     String name,
-    TipoObjeto objectType,
+    int objectTypeId,
     boolean borrowed,
     boolean inMaintenance
   ) {
     this.id = id;
-    this.name = name;
-    this.objectType = objectType;
+    this.name = name.toUpperCase();
+    this.objectTypeId = objectTypeId;
     this.borrowed = borrowed;
     this.inMaintenance = inMaintenance;
   }
@@ -30,8 +30,8 @@ public class Objeto {
     return name;
   }
 
-  public TipoObjeto getObjectType() {
-    return objectType;
+  public int getObjectTypeId() {
+    return objectTypeId;
   }
 
   public boolean isBorrowed() {

@@ -18,7 +18,8 @@ public class TipoObjetoService {
   }
 
   public TipoObjeto getById(int id) {
-    for (TipoObjeto tipoObjeto : tipoObjetoDao.getAll()) {
+    List<TipoObjeto> tipoObjetos = tipoObjetoDao.getAll();
+    for (TipoObjeto tipoObjeto : tipoObjetos) {
       if (tipoObjeto.getId() == id) return tipoObjeto;
     }
     return null;

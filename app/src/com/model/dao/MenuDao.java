@@ -58,7 +58,7 @@ public class MenuDao {
           MenuName.CADASTRO_CLIENTE,
           MenuName.CADASTRO_TIPO_OBJETO,
           MenuName.CADASTRO_OBJETO,
-          MenuName.CADASTRO_MANUTENCOES
+          MenuName.CADASTRO_MANUTENCAO
         )
       )
     );
@@ -99,7 +99,7 @@ public class MenuDao {
 
     final Menu cadastroManutencao = new Menu(
       "Cadastros de Manutencoes",
-      MenuName.CADASTRO_MANUTENCOES,
+      MenuName.CADASTRO_MANUTENCAO,
       MenuName.CADASTROS,
       new ArrayList<MenuName>()
     );

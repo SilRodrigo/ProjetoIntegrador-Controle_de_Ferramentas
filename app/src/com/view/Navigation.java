@@ -69,6 +69,7 @@ public class Navigation {
       register.add(consoleInput);
     }
     System.out.println(controller.insert(register));
+    Entrada.leiaString("Aperte ENTER para continuar...");
   }
 
   private void insertNavigationRelying(
@@ -88,7 +89,6 @@ public class Navigation {
             .equals(fields[i] + controller.getControllerBaseName())
         ) {
           System.out.println(" **********************************************");
-
           List<String> relyItems = relyRegister.getAll();
           if (relyItems.size() == 1) {
             System.out.println(
@@ -97,6 +97,7 @@ public class Navigation {
                 controller.getControllerBaseName()
               )
             );
+            Entrada.leiaString("Aperte ENTER para continuar...");
             return;
           }
           System.out.println(
@@ -108,11 +109,10 @@ public class Navigation {
             "\n\n **********************************************"
           );
           consoleInput = menuRelyingNavigation(relyRegister);
-          System.out.println(consoleInput);
-          if (consoleInput.equals("0")) {
-            return;
-          }
-          System.out.println("passou");
+          if (
+            consoleInput.equals("0") ||
+            !relyRegister.findId(Integer.parseInt(consoleInput))
+          ) return; else register.add(consoleInput);
           cont = true;
         }
       }
@@ -122,24 +122,30 @@ public class Navigation {
       register.add(consoleInput);
     }
     System.out.println(controller.insert(register));
+    Entrada.leiaString("Aperte ENTER para continuar...");
   }
 
   private String menuRelyingNavigation(IController relyRegister) {
     while (true) {
-      char input = Entrada.leiaChar(
+      String input = Entrada.leiaString(
         "Digite o Id do " + relyRegister.getControllerBaseName() + ": "
       );
       switch (input) {
-        case '+':
+        case "+":
           navGraphics.paginateRegisters(1);
           continue;
-        case '-':
+        case "-":
           navGraphics.paginateRegisters(-1);
           continue;
-        case '0':
-          return String.valueOf(input);
+        case "0":
+          return input;
         default:
-          break;
+          try {
+            Integer.parseInt(input);
+            return input;
+          } catch (Exception e) {
+            break;
+          }
       }
     }
   }
