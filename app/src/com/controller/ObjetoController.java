@@ -39,7 +39,8 @@ public class ObjetoController implements IController {
         list.get(1),
         Integer.parseInt(list.get(0)),
         false,
-        false
+        false,
+        true
       );
       return Texting.registerSuccessful;
     } catch (Exception e) {

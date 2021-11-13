@@ -13,14 +13,16 @@ public class ObjetoService {
     String name,
     int objectTypeId,
     boolean borrowed,
-    boolean inMaintenance
+    boolean inMaintenance,
+    boolean status
   ) {
     Objeto objeto = new Objeto(
       objetoDao.getLastIndex() + 1,
       name,
       objectTypeId,
       borrowed,
-      inMaintenance
+      inMaintenance,
+      status
     );
     objetoDao.insert(objeto);
   }
@@ -30,7 +32,7 @@ public class ObjetoService {
   public List<String> getAllData() {
     List<Objeto> tipoObjetos = objetoDao.getAll();
     List<String> objetoList = new ArrayList<>();
-    objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao");
+    objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao;Status");
     if (tipoObjetos == null) return objetoList;
     for (Objeto tipoObjeto : tipoObjetos) {
       objetoList.add(
@@ -42,7 +44,8 @@ public class ObjetoService {
         ";" +
         (tipoObjeto.isBorrowed() ? "Sim" : "Nao") +
         ";" +
-        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao")
+        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao") +
+        (tipoObjeto.getStatus() ? "Ativo" : "Inativo")
       );
     }
     return objetoList;

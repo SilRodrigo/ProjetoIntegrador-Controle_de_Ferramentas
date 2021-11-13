@@ -153,9 +153,9 @@ public class Entrada {
     int cont = 0;
     StringBuffer Valor = new StringBuffer("");
     do {
-      try {
+      try {    
         in = System.in.read();
-        chr = (char) in;
+        chr = (char) in;        
         if ((in != 10) & (in != 13)) {
           if (cont == 0) {
             Valor.append(chr);
@@ -164,7 +164,8 @@ public class Entrada {
         }
       } catch (IOException e) {}
     } while (in != 10);
-    return Valor.charAt(0);
+    if (Valor.length() > 0) return Valor.charAt(0);
+    return ' ';
   }
 
   /**

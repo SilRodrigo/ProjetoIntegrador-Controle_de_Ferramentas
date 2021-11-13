@@ -54,6 +54,7 @@ public class Navigation {
         graphics.paginateRegisters(-1);
         break;
       default:
+        System.out.println("alo");
         break;
     }
   }
