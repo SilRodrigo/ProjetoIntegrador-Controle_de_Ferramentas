@@ -110,7 +110,7 @@ public class Screen {
     graphics.displayRegisterOptions();
     graphics.displayRegisters(
       objeto.getAll(tipoObjeto),
-      Arrays.asList(5, 15, 20, 10, 15),
+      Arrays.asList(5, 15, 20, 10, 15, 10),
       1
     );
     navigation.registerNavigation(objeto, Arrays.asList(tipoObjeto), graphics);

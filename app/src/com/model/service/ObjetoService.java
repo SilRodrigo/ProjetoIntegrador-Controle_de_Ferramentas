@@ -45,6 +45,7 @@ public class ObjetoService {
         (tipoObjeto.isBorrowed() ? "Sim" : "Nao") +
         ";" +
         (tipoObjeto.isInMaintenance() ? "Sim" : "Nao") +
+        ";" +
         (tipoObjeto.getStatus() ? "Ativo" : "Inativo")
       );
     }
@@ -54,7 +55,7 @@ public class ObjetoService {
   public List<String> getAllData(TipoObjetoService tipoObjetoService) {
     List<Objeto> tipoObjetos = objetoDao.getAll();
     List<String> objetoList = new ArrayList<>();
-    objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao");
+    objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao;Status");
     if (tipoObjetos == null) return objetoList;
     for (Objeto tipoObjeto : tipoObjetos) {
       objetoList.add(
@@ -66,7 +67,9 @@ public class ObjetoService {
         ";" +
         (tipoObjeto.isBorrowed() ? "Sim" : "Nao") +
         ";" +
-        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao")
+        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao") +
+        ";" +
+        (tipoObjeto.getStatus() ? "Ativo" : "Inativo")
       );
     }
     return objetoList;
