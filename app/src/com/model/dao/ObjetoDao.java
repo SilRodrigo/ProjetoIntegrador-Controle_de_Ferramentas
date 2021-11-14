@@ -8,7 +8,14 @@ public class ObjetoDao {
 
   List<Objeto> objetoList = new ArrayList<Objeto>();
 
-  public void getById(int id) {}
+  public Objeto getById(int id) {
+    for (Objeto objeto : this.objetoList) {
+      if (objeto.getId() == id) {
+        return objeto;
+      }
+    }
+    return null;
+  }
 
   public int getLastIndex() {
     return objetoList.size();

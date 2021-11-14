@@ -49,7 +49,12 @@ public class ClienteController implements IController {
 
   @Override
   public boolean findId(int id) {
-    // TODO Auto-generated method stub
-    return false;
+    Cliente cliente = this.clienteService.getById(id);
+    if (cliente == null) {
+      System.out.println("\nNao existe esse Id cadastrado!");
+      Entrada.leiaString("Aperte ENTER para continuar...");
+      return false;
+    }
+    return true;
   }
 }

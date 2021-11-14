@@ -20,8 +20,7 @@ public class Texting {
       "\n\n\n\n\n\n\n\n ********************************************** \n" +
       "Nao existe cadastro de " +
       relyName +
-      "\nCadastre algum valor antes de cadastrar um " +
-      register +
+      "\nCadastre algum valor antes de continuar o processo" +
       "\n ********************************************** "
     );
   }

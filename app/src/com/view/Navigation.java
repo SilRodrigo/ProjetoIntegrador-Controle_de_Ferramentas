@@ -54,7 +54,6 @@ public class Navigation {
         graphics.paginateRegisters(-1);
         break;
       default:
-        System.out.println("alo");
         break;
     }
   }
@@ -83,7 +82,8 @@ public class Navigation {
     for (int i = 1; i < fields.length; i++) {
       String consoleInput;
       Boolean cont = false;
-      for (IController relyRegister : relyRegisters) {
+      for (int j = 0; j < relyRegisters.size(); j++) {
+        IController relyRegister = relyRegisters.get(j);
         if (
           relyRegister
             .getControllerBaseName()
@@ -116,6 +116,7 @@ public class Navigation {
           ) return; else register.add(consoleInput);
           cont = true;
         }
+        if (cont) break;
       }
       if (cont) continue;
       consoleInput =

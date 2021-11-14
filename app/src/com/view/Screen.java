@@ -1,6 +1,7 @@
 package com.view;
 
 import com.controller.ClienteController;
+import com.controller.EmprestimoController;
 import com.controller.ManutencaoController;
 import com.controller.MenuController;
 import com.controller.ObjetoController;
@@ -18,6 +19,7 @@ public class Screen {
   TipoObjetoController tipoObjeto = new TipoObjetoController();
   ObjetoController objeto = new ObjetoController();
   ManutencaoController manutencao = new ManutencaoController();
+  EmprestimoController emprestimo = new EmprestimoController();
   Graphics graphics;
   Navigation navigation;
 
@@ -52,6 +54,10 @@ public class Screen {
       /* ------------------------------------- */
       case CADASTRO_MANUTENCAO:
         cadastroManutencaoMenu();
+        break;
+      /* ------------------------------------- */
+      case EMPRESTIMO:
+        emprestimoMenu();
         break;
       /* ------------------------------------- */
       default:
@@ -122,6 +128,14 @@ public class Screen {
     graphics.displayRegisterOptions();
     graphics.displayRegisters(manutencao.getAll(), Arrays.asList(5, 15), 1);
     navigation.registerNavigation(manutencao, null, graphics);
+  }
+
+  private void emprestimoMenu() {
+    graphics.splitterLine();
+    graphics.displayHeader();
+    graphics.displayRegisterOptions();
+    graphics.displayRegisters(emprestimo.getAll(objeto, cliente), Arrays.asList(5, 25, 25, 15, 15, 10), 1);
+    navigation.registerNavigation(emprestimo, Arrays.asList(objeto, cliente), graphics);
   }
 
   private void notImplementedMenu() {

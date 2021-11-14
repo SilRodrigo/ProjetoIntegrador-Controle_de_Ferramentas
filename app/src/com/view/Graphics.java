@@ -80,7 +80,7 @@ public class Graphics {
 
   protected void displayRegisterOptions() {
     String text = (" ________________________________________________\n");
-    text += "| (I) - Inserir | (C) - Editar | (X) - Excluir|\n";
+    text += "| (I) - Inserir | (E) - Editar | (X) - Excluir|\n";
     text += " ------------------------------------------------";
     System.out.println(text);
     System.out.println();

@@ -27,7 +27,9 @@ public class ObjetoService {
     objetoDao.insert(objeto);
   }
 
-  public void getById(int id) {}
+  public Objeto getById(int id) {
+    return objetoDao.getById(id);
+  }
 
   public List<String> getAllData() {
     List<Objeto> tipoObjetos = objetoDao.getAll();

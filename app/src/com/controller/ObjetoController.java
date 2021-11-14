@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.model.entity.Objeto;
 import com.model.service.ObjetoService;
 import com.util.Texting;
 import java.util.List;
@@ -56,7 +57,12 @@ public class ObjetoController implements IController {
 
   @Override
   public boolean findId(int id) {
-    // TODO Auto-generated method stub
-    return false;
+    Objeto objeto = this.objetoService.getById(id);
+    if (objeto == null) {
+      System.out.println("\nNao existe esse Id cadastrado!");
+      Entrada.leiaString("Aperte ENTER para continuar...");
+      return false;
+    }
+    return true;
   }
 }
