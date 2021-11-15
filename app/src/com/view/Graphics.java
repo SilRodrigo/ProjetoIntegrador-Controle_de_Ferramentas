@@ -80,11 +80,11 @@ public class Graphics {
 
   protected void displayRegisterOptions() {
     String text = (" ________________________________________________\n");
-    text += "| (I) - Inserir | (E) - Editar | (X) - Excluir|\n";
+    text += "| (I) - Inserir | (E) - Editar | (X) - Excluir   |\n";
     text += " ------------------------------------------------";
     System.out.println(text);
     System.out.println();
-  }
+  }  
 
   protected void displayRegisters(
     List<String> list,

@@ -51,13 +51,13 @@ public class Screen {
       case CADASTRO_OBJETO:
         cadastroObjetoMenu();
         break;
-      /* ------------------------------------- */
-      case CADASTRO_MANUTENCAO:
-        cadastroManutencaoMenu();
-        break;
-      /* ------------------------------------- */
+      /* ------------------------------------- */      
       case EMPRESTIMO:
         emprestimoMenu();
+        break;
+      /* ------------------------------------- */
+      case MANUTENCAO:
+        manutencaoMenu();
         break;
       /* ------------------------------------- */
       default:
@@ -83,7 +83,7 @@ public class Screen {
     graphics.displayHeader();
     graphics.displayNavigationOptions(
       new ArrayList<String>(
-        Arrays.asList("Cliente", "Tipo de Objetos", "Objetos", "Manutencoes")
+        Arrays.asList("Cliente", "Tipo de Objetos", "Objetos")
       ),
       null
     );
@@ -115,20 +115,12 @@ public class Screen {
     graphics.displayHeader();
     graphics.displayRegisterOptions();
     graphics.displayRegisters(
-      objeto.getAll(tipoObjeto),
+      objeto.getAll(),
       Arrays.asList(5, 15, 20, 10, 15, 10),
       1
     );
     navigation.registerNavigation(objeto, Arrays.asList(tipoObjeto), graphics);
-  }
-
-  private void cadastroManutencaoMenu() {
-    graphics.splitterLine();
-    graphics.displayHeader();
-    graphics.displayRegisterOptions();
-    graphics.displayRegisters(manutencao.getAll(), Arrays.asList(5, 15), 1);
-    navigation.registerNavigation(manutencao, null, graphics);
-  }
+  }  
 
   private void emprestimoMenu() {
     graphics.splitterLine();
@@ -136,6 +128,14 @@ public class Screen {
     graphics.displayRegisterOptions();
     graphics.displayRegisters(emprestimo.getAll(objeto, cliente), Arrays.asList(5, 25, 25, 15, 15, 10), 1);
     navigation.registerNavigation(emprestimo, Arrays.asList(objeto, cliente), graphics);
+  }
+
+  private void manutencaoMenu() {
+    graphics.splitterLine();
+    graphics.displayHeader();
+    graphics.displayRegisterOptions();
+    graphics.displayRegisters(manutencao.getAll(), Arrays.asList(5, 15, 15), 1);
+    navigation.registerNavigation(manutencao, Arrays.asList(objeto), graphics);
   }
 
   private void notImplementedMenu() {

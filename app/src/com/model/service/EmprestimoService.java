@@ -2,6 +2,7 @@ package com.model.service;
 
 import com.model.dao.EmprestimoDao;
 import com.model.entity.Emprestimo;
+import com.model.entity.Objeto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,15 @@ public class EmprestimoService {
       dateIn,
       status
     );
+    ObjetoService objetoService = new ObjetoService();
+    Objeto objeto = objetoService.getById(objetoId);
+    if (
+      !objeto.getStatus() || objeto.isBorrowed() || objeto.isInMaintenance()
+    ) throw new Exception(
+      "Objeto não pode ser emprestado.\nVerifique sua situação antes de continuar."
+    );
+    objeto.setBorrowed(true);
+    objetoService.update(objeto);
     emprestimoDao.insert(emprestimo);
   }
 

@@ -6,10 +6,10 @@ import java.util.List;
 
 public class ObjetoDao {
 
-  List<Objeto> objetoList = new ArrayList<Objeto>();
+  static List<Objeto> objetoList = new ArrayList<Objeto>();
 
   public Objeto getById(int id) {
-    for (Objeto objeto : this.objetoList) {
+    for (Objeto objeto : ObjetoDao.objetoList) {
       if (objeto.getId() == id) {
         return objeto;
       }
@@ -22,10 +22,30 @@ public class ObjetoDao {
   }
 
   public void insert(Objeto objeto) {
-    this.objetoList.add(objeto);
+    ObjetoDao.objetoList.add(objeto);
   }
 
   public List<Objeto> getAll() {
-    return this.objetoList;
+    return ObjetoDao.objetoList;
+  }
+
+  public void update(Objeto newObjeto) {
+    Objeto objeto = this.getById(newObjeto.getId());
+    if (objeto == null) return;
+    objeto.setName(newObjeto.getName());
+    objeto.setBorrowed(newObjeto.isBorrowed());
+    objeto.setInMaintenance(newObjeto.isInMaintenance());
+    objeto.setObjectTypeId(newObjeto.getObjectTypeId());
+    objeto.setStatus(newObjeto.getStatus());
+  }
+
+  public List<Objeto> getAvailable() {
+    List<Objeto> objetoList = new ArrayList<>();
+    for (Objeto objeto : ObjetoDao.objetoList) {
+      if (
+        objeto.getStatus() && !objeto.isBorrowed() && !objeto.isInMaintenance()
+      ) objetoList.add(objeto);
+    }
+    return objetoList;
   }
 }

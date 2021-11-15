@@ -6,16 +6,16 @@ import java.util.List;
 
 public class TipoObjetoDao {
 
-  List<TipoObjeto> tipoObjetoList = new ArrayList<TipoObjeto>();
+  static List<TipoObjeto> tipoObjetoList = new ArrayList<TipoObjeto>();
 
   public void insert(TipoObjeto tipoObjeto) {
-    this.tipoObjetoList.add(tipoObjeto);
+    tipoObjetoList.add(tipoObjeto);
   }
 
   public void getById(int id) {}
 
   public List<TipoObjeto> getAll() {
-    return this.tipoObjetoList;
+    return tipoObjetoList;
   }
 
   public int getLastIndex() {

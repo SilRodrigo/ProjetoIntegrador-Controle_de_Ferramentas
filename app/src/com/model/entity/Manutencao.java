@@ -4,10 +4,13 @@ public class Manutencao {
 
   int id;
   String name;
+  int objetoId;
+  boolean status;
 
-  public Manutencao(int id, String name) {
+  public Manutencao(int id, String name, int objetoId) {
     this.id = id;
     this.name = name;
+    this.objetoId = objetoId;
   }
 
   public int getId() {
@@ -16,5 +19,13 @@ public class Manutencao {
 
   public String getName() {
       return name;
+  }
+
+  public int getObjetoId() {
+      return objetoId;
+  }
+
+  public boolean getStatus() {
+      return status;
   }
 }

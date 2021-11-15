@@ -14,8 +14,9 @@ public class ObjetoController implements IController {
     return objetoService.getAllData();
   }
 
-  public List<String> getAll(TipoObjetoController tipoObjetoController) {
-    return objetoService.getAllData(tipoObjetoController.tipoObjetoService);
+  @Override
+  public List<String> getAvailable() {
+    return objetoService.getAvailable();
   }
 
   public List<String> getInsertRequiredOnly() {

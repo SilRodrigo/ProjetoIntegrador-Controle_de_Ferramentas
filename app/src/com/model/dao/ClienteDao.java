@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDao {
-
-  List<Cliente> clienteList = new ArrayList<Cliente>();
+  
+  static List<Cliente> clienteList = new ArrayList<Cliente>();
 
   public void insert(Cliente cliente) {
-    this.clienteList.add(cliente);
+    ClienteDao.clienteList.add(cliente);
   }
 
   public Cliente getById(int id) {
-    for (Cliente cliente : this.clienteList) {
+    for (Cliente cliente : ClienteDao.clienteList) {
       if (cliente.getId() == id) {
         return cliente;
       }

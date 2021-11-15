@@ -18,9 +18,8 @@ public class Texting {
   ) {
     return (
       "\n\n\n\n\n\n\n\n ********************************************** \n" +
-      "Nao existe cadastro de " +
-      relyName +
-      "\nCadastre algum valor antes de continuar o processo" +
+      "Nenhum " + relyName + " cadastrado ou disponível," +
+      "\nVerifique antes de continuar o processo" +
       "\n ********************************************** "
     );
   }

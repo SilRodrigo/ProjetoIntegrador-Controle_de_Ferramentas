@@ -48,4 +48,24 @@ public class Objeto {
   public boolean getStatus(){
     return status;
   }
+
+  public void setName(String name) {
+      this.name = name;
+  }
+
+  public void setObjectTypeId(int objectTypeId) {
+      this.objectTypeId = objectTypeId;
+  }
+
+  public void setBorrowed(boolean borrowed) {
+      this.borrowed = borrowed;
+  }
+
+  public void setInMaintenance(boolean inMaintenance) {
+      this.inMaintenance = inMaintenance;
+  }
+
+  public void setStatus(boolean status) {
+      this.status = status;
+  }
 }

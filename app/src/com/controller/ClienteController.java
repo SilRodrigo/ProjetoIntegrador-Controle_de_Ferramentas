@@ -57,4 +57,9 @@ public class ClienteController implements IController {
     }
     return true;
   }
+
+  @Override
+  public List<String> getAvailable() {
+    return clienteService.getAllData();
+  }
 }

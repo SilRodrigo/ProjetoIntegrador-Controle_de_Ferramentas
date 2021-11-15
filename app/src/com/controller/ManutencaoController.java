@@ -7,9 +7,13 @@ public class ManutencaoController implements IController {
 
   ManutencaoService manutencaoService = new ManutencaoService();
 
+  public List<String> getInsertRequiredOnly() {
+    return manutencaoService.getInsertRequiredOnly();
+  }
+
   @Override
   public String[] requestInsert() {
-    String fields = this.getAll().get(0);
+    String fields = this.getInsertRequiredOnly().get(0);
     return fields.split(";");
   }
 
@@ -27,7 +31,7 @@ public class ManutencaoController implements IController {
   @Override
   public String insert(List<String> list) {
     try {
-      manutencaoService.insert(list.get(0));
+      manutencaoService.insert(list.get(0), Integer.parseInt(list.get(1)));
       return "\nCadastrado com sucesso!";
     } catch (Exception e) {
       return "\nDados Invalidos para cadastro!";
@@ -42,7 +46,12 @@ public class ManutencaoController implements IController {
 
   @Override
   public String getControllerBaseName() {
-    return "Manutencao";
+    return "";
   }
 
+  @Override
+  public List<String> getAvailable() {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }

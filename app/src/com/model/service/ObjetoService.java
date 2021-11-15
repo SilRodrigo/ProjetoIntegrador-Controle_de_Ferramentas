@@ -32,49 +32,8 @@ public class ObjetoService {
   }
 
   public List<String> getAllData() {
-    List<Objeto> tipoObjetos = objetoDao.getAll();
-    List<String> objetoList = new ArrayList<>();
-    objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao;Status");
-    if (tipoObjetos == null) return objetoList;
-    for (Objeto tipoObjeto : tipoObjetos) {
-      objetoList.add(
-        tipoObjeto.getId() +
-        ";" +
-        tipoObjeto.getObjectTypeId() +
-        ";" +
-        tipoObjeto.getName() +
-        ";" +
-        (tipoObjeto.isBorrowed() ? "Sim" : "Nao") +
-        ";" +
-        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao") +
-        ";" +
-        (tipoObjeto.getStatus() ? "Ativo" : "Inativo")
-      );
-    }
-    return objetoList;
-  }
-
-  public List<String> getAllData(TipoObjetoService tipoObjetoService) {
-    List<Objeto> tipoObjetos = objetoDao.getAll();
-    List<String> objetoList = new ArrayList<>();
-    objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao;Status");
-    if (tipoObjetos == null) return objetoList;
-    for (Objeto tipoObjeto : tipoObjetos) {
-      objetoList.add(
-        tipoObjeto.getId() +
-        ";" +
-        tipoObjetoService.getById(tipoObjeto.getObjectTypeId()).getType() +
-        ";" +
-        tipoObjeto.getName() +
-        ";" +
-        (tipoObjeto.isBorrowed() ? "Sim" : "Nao") +
-        ";" +
-        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao") +
-        ";" +
-        (tipoObjeto.getStatus() ? "Ativo" : "Inativo")
-      );
-    }
-    return objetoList;
+    List<Objeto> objetos = objetoDao.getAll();
+    return toStringList(objetos, new TipoObjetoService());
   }
 
   public List<String> getInsertRequiredOnly() {
@@ -89,6 +48,37 @@ public class ObjetoService {
         tipoObjeto.getObjectTypeId() +
         ";" +
         tipoObjeto.getName()
+      );
+    }
+    return objetoList;
+  }
+
+  public List<String> getAvailable() {
+    List<Objeto> objetos = this.objetoDao.getAvailable();
+    return toStringList(objetos, new TipoObjetoService());
+  }
+
+  public void update(Objeto objeto) {
+    this.objetoDao.update(objeto);
+  }
+
+  private List<String> toStringList(List<Objeto> objetos, TipoObjetoService tipoObjetoService) {
+    List<String> objetoList = new ArrayList<>();
+    objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao;Status");
+    if (objetos == null) return objetoList;
+    for (Objeto tipoObjeto : objetos) {
+      objetoList.add(
+        tipoObjeto.getId() +
+        ";" +
+        tipoObjetoService.getById(tipoObjeto.getObjectTypeId()).getType() +
+        ";" +
+        tipoObjeto.getName() +
+        ";" +
+        (tipoObjeto.isBorrowed() ? "Sim" : "Nao") +
+        ";" +
+        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao") +
+        ";" +
+        (tipoObjeto.getStatus() ? "Ativo" : "Inativo")
       );
     }
     return objetoList;

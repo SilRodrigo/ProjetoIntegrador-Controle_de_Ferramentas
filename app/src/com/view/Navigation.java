@@ -90,7 +90,7 @@ public class Navigation {
             .equals(fields[i] + controller.getControllerBaseName())
         ) {
           System.out.println(" **********************************************");
-          List<String> relyItems = relyRegister.getAll();
+          List<String> relyItems = relyRegister.getAvailable();
           if (relyItems.size() == 1) {
             System.out.println(
               Texting.emptyRelyRegister(
@@ -105,7 +105,7 @@ public class Navigation {
             "\n\nCONSULTA DE " +
             relyRegister.getControllerBaseName().toUpperCase()
           );
-          navGraphics.displayRegisters(relyRegister.getAll(), null, 1);
+          navGraphics.displayRegisters(relyRegister.getAvailable(), null, 1);
           System.out.println(
             "\n\n **********************************************"
           );

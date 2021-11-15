@@ -57,8 +57,7 @@ public class MenuDao {
         Arrays.asList(
           MenuName.CADASTRO_CLIENTE,
           MenuName.CADASTRO_TIPO_OBJETO,
-          MenuName.CADASTRO_OBJETO,
-          MenuName.CADASTRO_MANUTENCAO
+          MenuName.CADASTRO_OBJETO
         )
       )
     );
@@ -97,13 +96,13 @@ public class MenuDao {
 
     /*  */
 
-    final Menu cadastroManutencao = new Menu(
+/*     final Menu cadastroManutencao = new Menu(
       "Cadastros de Manutencoes",
       MenuName.CADASTRO_MANUTENCAO,
       MenuName.CADASTROS,
       new ArrayList<MenuName>()
     );
-    addMenu(cadastroManutencao);
+    addMenu(cadastroManutencao); */
 
     /*  */
 

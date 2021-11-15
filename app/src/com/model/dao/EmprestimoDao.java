@@ -14,11 +14,11 @@ public class EmprestimoDao {
     return emprestimoList.size();
   }
 
-  public void insert(Emprestimo objeto) {
-    this.emprestimoList.add(objeto);
-  }
-
   public List<Emprestimo> getAll() {
     return this.emprestimoList;
+  }
+
+  public void insert(Emprestimo objeto) {
+    this.emprestimoList.add(objeto);
   }
 }

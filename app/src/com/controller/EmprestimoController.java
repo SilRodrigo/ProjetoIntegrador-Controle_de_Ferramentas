@@ -46,12 +46,12 @@ public class EmprestimoController implements IController {
     LocalDateTime now = LocalDateTime.now();
     try {
       emprestimoService.insert(
-        Integer.parseInt(list.get(1)),
         Integer.parseInt(list.get(0)),
+        Integer.parseInt(list.get(1)),
         dtf.format(now),
         "",
         true
-      );
+      );      
       return Texting.registerSuccessful;
     } catch (Exception e) {
       System.out.println(e);
@@ -68,5 +68,11 @@ public class EmprestimoController implements IController {
   public boolean findId(int id) {
     // TODO Auto-generated method stub
     return false;
+  }
+
+  @Override
+  public List<String> getAvailable() {
+    // TODO Auto-generated method stub
+    return null;
   }
 }
