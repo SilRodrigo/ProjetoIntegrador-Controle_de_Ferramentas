@@ -47,6 +47,9 @@ public class Navigation {
           insertNavigationRelying(controller, relyMenus);
         }
         break;
+      case 'E':
+      case 'e':
+        editNavegation(controller);
       case '+':
         graphics.paginateRegisters(1);
         break;
@@ -150,5 +153,40 @@ public class Navigation {
           }
       }
     }
+  }
+
+  private void editNavegation(IController controller) {
+    int consoleInput = Entrada.leiaInt("Digite o id para editar: ");
+    List<String> response = controller.requestEdit(consoleInput);
+    if (response.size() == 0) {
+      System.out.println("Id inválido!");
+      Entrada.leiaString("Aperte ENTER para continuar...");
+      return;
+    }
+    String[] header = response.get(0).split(";");
+    String[] editItem = response.get(1).split(";");
+    System.out.println("---");
+    for (int i = 0; i < header.length; i++) {
+      System.out.println(
+        "(" + (i + 1) + ") - " + header[i] + ": " + editItem[i]
+      );
+    }
+    System.out.println("---");
+    System.out.println("0 - Cancelar");
+    System.out.println("");
+    int index = Entrada.leiaInt("Digite o numero que deseja editar: ");
+    switch (consoleInput) {
+      case 0:
+        return;
+      default:
+        Boolean updated = controller.update(
+          consoleInput,
+          index,
+          Entrada.leiaString("Digite o novo valor do campo: ")
+        );
+        if (updated) System.out.println("Atualizado com Sucesso!");
+        else System.out.println("Erro na atualizacao do cadastro!");        
+    }
+    return;
   }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDao {
-  
+
   static List<Cliente> clienteList = new ArrayList<Cliente>();
 
   public void insert(Cliente cliente) {
@@ -27,5 +27,15 @@ public class ClienteDao {
 
   public int getLastIndex() {
     return clienteList.size();
+  }
+
+  public boolean update(Cliente cliente) {
+    for (Cliente clienteOld : ClienteDao.clienteList) {
+      if (clienteOld.getId() == cliente.getId()) {
+        clienteOld = cliente;
+        return true;
+      }
+    }
+    return false;
   }
 }

@@ -66,4 +66,16 @@ public class ObjetoController implements IController {
     }
     return true;
   }
+
+  @Override
+  public List<String> requestEdit(int id) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public boolean update(int id, int index, String newValue) {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }

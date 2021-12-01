@@ -29,4 +29,16 @@ public class Cliente{
   public int getAddressNumber() {
     return addressNumber;
   }
+
+  public void setName(String name) {
+      this.name = name;
+  }
+
+  public void setAddress(String address) {
+      this.address = address;
+  }
+
+  public void setAddressNumber(int addressNumber) {
+      this.addressNumber = addressNumber;
+  }
 }

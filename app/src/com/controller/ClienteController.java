@@ -62,4 +62,19 @@ public class ClienteController implements IController {
   public List<String> getAvailable() {
     return clienteService.getAllData();
   }
+
+  @Override
+  public List<String> requestEdit(int id) {
+    return clienteService.requestEdit(id);
+  }
+
+  @Override
+  public boolean update(int id, int index, String newValue) {
+    try {
+      clienteService.update(id, index, newValue);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
+  }
 }
