@@ -11,12 +11,13 @@ public class ManutencaoService {
 
   ManutencaoDao manutencaoDao = new ManutencaoDao();
 
-  public String insert(String name, int objetoId) {
+  public String insert(String name, int objetoId, boolean status) {
     try {
       Manutencao manutencao = new Manutencao(
         manutencaoDao.getLastIndex() + 1,
         name,
-        objetoId
+        objetoId,
+        status
       );
       ObjetoService objetoService = new ObjetoService();
       Objeto objeto = objetoService.getById(objetoId);
@@ -42,7 +43,7 @@ public class ManutencaoService {
   public List<String> getAllData() {
     List<Manutencao> manutencoes = manutencaoDao.getAll();
     List<String> manutencaoList = new ArrayList<>();
-    manutencaoList.add("id;Nome;Objeto");
+    manutencaoList.add("id;Nome;Objeto;Status");
     if (manutencoes == null) return manutencaoList;
     for (Manutencao manutencao : manutencoes) {
       manutencaoList.add(
@@ -50,7 +51,9 @@ public class ManutencaoService {
         ";" +
         manutencao.getName() +
         ";" +
-        new ObjetoService().getById(manutencao.getObjetoId()).getName()
+        new ObjetoService().getById(manutencao.getObjetoId()).getName() +
+        ";" +
+        (manutencao.getStatus() ? "Em andamento" : "Finalizado")
       );
     }
     return manutencaoList;

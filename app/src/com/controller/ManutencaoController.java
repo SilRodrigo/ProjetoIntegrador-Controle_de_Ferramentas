@@ -31,7 +31,7 @@ public class ManutencaoController implements IController {
   @Override
   public String insert(List<String> list) {
     try {
-      manutencaoService.insert(list.get(0), Integer.parseInt(list.get(1)));
+      manutencaoService.insert(list.get(0), Integer.parseInt(list.get(1)), true);
       return "\nCadastrado com sucesso!";
     } catch (Exception e) {
       return "\nDados Invalidos para cadastro!";

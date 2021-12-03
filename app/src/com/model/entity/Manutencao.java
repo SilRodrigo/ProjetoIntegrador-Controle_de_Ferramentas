@@ -7,25 +7,26 @@ public class Manutencao {
   int objetoId;
   boolean status;
 
-  public Manutencao(int id, String name, int objetoId) {
+  public Manutencao(int id, String name, int objetoId, boolean status) {
     this.id = id;
     this.name = name;
     this.objetoId = objetoId;
+    this.status = status;
   }
 
   public int getId() {
-      return id;
+    return id;
   }
 
   public String getName() {
-      return name;
+    return name;
   }
 
   public int getObjetoId() {
-      return objetoId;
+    return objetoId;
   }
 
   public boolean getStatus() {
-      return status;
+    return status;
   }
 }

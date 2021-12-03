@@ -69,13 +69,16 @@ public class ObjetoController implements IController {
 
   @Override
   public List<String> requestEdit(int id) {
-    // TODO Auto-generated method stub
-    return null;
+    return objetoService.requestEdit(id);
   }
 
   @Override
   public boolean update(int id, int index, String newValue) {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      objetoService.update(id, index, newValue);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 }

@@ -27,6 +27,27 @@ public class ObjetoService {
     objetoDao.insert(objeto);
   }
 
+  public void update(int id, int index, String newValue) throws Exception {
+    Objeto objeto = getById(id);
+    switch (index) {
+      case 1: //Nome
+        objeto.setName(newValue);
+      case 2: //Status;
+        newValue = newValue.toUpperCase();
+        if (newValue.equals("A") || newValue.equals("ATIVO")) objeto.setStatus(
+          true
+        );
+        if (newValue.equals("I") || newValue.equals("INATIVO")) {
+          if (
+            objeto.isBorrowed() || objeto.isInMaintenance()
+          ) throw new Exception(); else objeto.setStatus(false);
+        }
+      default:
+        objetoDao.update(objeto);
+    }
+    return;
+  }
+
   public Objeto getById(int id) {
     return objetoDao.getById(id);
   }
@@ -62,25 +83,39 @@ public class ObjetoService {
     this.objetoDao.update(objeto);
   }
 
-  private List<String> toStringList(List<Objeto> objetos, TipoObjetoService tipoObjetoService) {
+  private List<String> toStringList(
+    List<Objeto> objetos,
+    TipoObjetoService tipoObjetoService
+  ) {
     List<String> objetoList = new ArrayList<>();
     objetoList.add("id;Tipo;Nome;Emprestado;Em Manutencao;Status");
     if (objetos == null) return objetoList;
-    for (Objeto tipoObjeto : objetos) {
+    for (Objeto objeto : objetos) {
       objetoList.add(
-        tipoObjeto.getId() +
+        objeto.getId() +
         ";" +
-        tipoObjetoService.getById(tipoObjeto.getObjectTypeId()).getType() +
+        tipoObjetoService.getById(objeto.getObjectTypeId()).getType() +
         ";" +
-        tipoObjeto.getName() +
+        objeto.getName() +
         ";" +
-        (tipoObjeto.isBorrowed() ? "Sim" : "Nao") +
+        (objeto.isBorrowed() ? "Sim" : "Nao") +
         ";" +
-        (tipoObjeto.isInMaintenance() ? "Sim" : "Nao") +
+        (objeto.isInMaintenance() ? "Sim" : "Nao") +
         ";" +
-        (tipoObjeto.getStatus() ? "Ativo" : "Inativo")
+        (objeto.getStatus() ? "Ativo" : "Inativo")
       );
     }
+    return objetoList;
+  }
+
+  public List<String> requestEdit(int id) {
+    Objeto objeto = getById(id);
+    List<String> objetoList = new ArrayList<>();
+    if (objeto == null) return objetoList;
+    objetoList.add("Nome;Status (Digite (A)tivo ou (I)nativo para alterar)");
+    objetoList.add(
+      objeto.getName() + ";" + (objeto.getStatus() ? "Ativo" : "Inativo")
+    );
     return objetoList;
   }
 }

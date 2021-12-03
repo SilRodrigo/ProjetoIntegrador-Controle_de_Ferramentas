@@ -21,4 +21,14 @@ public class TipoObjetoDao {
   public int getLastIndex() {
     return tipoObjetoList.size();
   }
+
+  public boolean update(TipoObjeto tipoObjeto) {
+    for (TipoObjeto tipoObjetoOld : TipoObjetoDao.tipoObjetoList) {
+      if (tipoObjetoOld.getId() == tipoObjeto.getId()) {
+        tipoObjetoOld = tipoObjeto;
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -51,7 +51,7 @@ public class Screen {
       case CADASTRO_OBJETO:
         cadastroObjetoMenu();
         break;
-      /* ------------------------------------- */      
+      /* ------------------------------------- */
       case EMPRESTIMO:
         emprestimoMenu();
         break;
@@ -120,21 +120,33 @@ public class Screen {
       1
     );
     navigation.registerNavigation(objeto, Arrays.asList(tipoObjeto), graphics);
-  }  
+  }
 
   private void emprestimoMenu() {
     graphics.splitterLine();
     graphics.displayHeader();
     graphics.displayRegisterOptions();
-    graphics.displayRegisters(emprestimo.getAll(objeto, cliente), Arrays.asList(5, 25, 25, 15, 15, 10), 1);
-    navigation.registerNavigation(emprestimo, Arrays.asList(objeto, cliente), graphics);
+    graphics.displayRegisters(
+      emprestimo.getAll(objeto, cliente),
+      Arrays.asList(5, 25, 25, 15, 15, 10),
+      1
+    );
+    navigation.registerNavigation(
+      emprestimo,
+      Arrays.asList(objeto, cliente),
+      graphics
+    );
   }
 
   private void manutencaoMenu() {
     graphics.splitterLine();
     graphics.displayHeader();
     graphics.displayRegisterOptions();
-    graphics.displayRegisters(manutencao.getAll(), Arrays.asList(5, 15, 15), 1);
+    graphics.displayRegisters(
+      manutencao.getAll(),
+      Arrays.asList(5, 15, 15, 15),
+      1
+    );
     navigation.registerNavigation(manutencao, Arrays.asList(objeto), graphics);
   }
 

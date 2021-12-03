@@ -56,14 +56,17 @@ public class TipoObjetoController implements IController {
 
   @Override
   public List<String> requestEdit(int id) {
-    // TODO Auto-generated method stub
-    return null;
+    return tipoObjetoService.requestEdit(id);
   }
 
   @Override
   public boolean update(int id, int index, String newValue) {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      tipoObjetoService.update(id, index, newValue);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 
 }

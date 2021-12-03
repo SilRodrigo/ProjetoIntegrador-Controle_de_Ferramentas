@@ -8,6 +8,8 @@ import java.util.List;
 public class TipoObjetoService {
 
   TipoObjetoDao tipoObjetoDao = new TipoObjetoDao();
+  final String INDEX_LIST = ("Tipo");
+  final String ID = "id;";
 
   public void insert(String type) {
     TipoObjeto tipoObjeto = new TipoObjeto(
@@ -15,6 +17,17 @@ public class TipoObjetoService {
       type
     );
     tipoObjetoDao.insert(tipoObjeto);
+  }
+
+  public void update(int id, int index, String newValue) throws Exception {
+    TipoObjeto tipoObjeto = getById(id);
+    switch (index) {
+      case 1: //Nome
+        tipoObjeto.setType(newValue);      
+      default:
+        tipoObjetoDao.update(tipoObjeto);
+    }
+    return;
   }
 
   public TipoObjeto getById(int id) {
@@ -28,11 +41,20 @@ public class TipoObjetoService {
   public List<String> getAllData() {
     List<TipoObjeto> tipoObjetos = tipoObjetoDao.getAll();
     List<String> tipoObjetoList = new ArrayList<>();
-    tipoObjetoList.add("id;Tipo");
+    tipoObjetoList.add(ID + INDEX_LIST);
     if (tipoObjetos == null) return tipoObjetoList;
     for (TipoObjeto tipoObjeto : tipoObjetos) {
       tipoObjetoList.add(tipoObjeto.getId() + ";" + tipoObjeto.getType());
     }
+    return tipoObjetoList;
+  }
+
+  public List<String> requestEdit(int id) {
+    TipoObjeto tipoObjeto = getById(id);
+    List<String> tipoObjetoList = new ArrayList<>();
+    if (tipoObjeto == null) return tipoObjetoList;
+    tipoObjetoList.add(INDEX_LIST);
+    tipoObjetoList.add(tipoObjeto.getType());
     return tipoObjetoList;
   }
 }
