@@ -126,6 +126,7 @@ public class Screen {
     graphics.splitterLine();
     graphics.displayHeader();
     graphics.displayRegisterOptions();
+    graphics.displayReportOption();
     graphics.displayRegisters(
       emprestimo.getAll(objeto, cliente),
       Arrays.asList(5, 25, 25, 15, 15, 10),

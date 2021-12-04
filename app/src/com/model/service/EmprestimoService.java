@@ -3,6 +3,8 @@ package com.model.service;
 import com.model.dao.EmprestimoDao;
 import com.model.entity.Emprestimo;
 import com.model.entity.Objeto;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,11 @@ public class EmprestimoService {
         newValue = newValue.toUpperCase();
         if (newValue.equals("D") || newValue.equals("DEVOLVIDO")) {
           emprestimo.setStatus(false);
+          DateTimeFormatter dtf = DateTimeFormatter.ofPattern(
+            "dd/MM/yyyy HH:mm:ss"
+          );
+          LocalDateTime now = LocalDateTime.now();
+          emprestimo.setDateIn(dtf.format(now));
           ObjetoService objetoService = new ObjetoService();
           Objeto objeto = objetoService.getById(emprestimo.getObjetoId());
           objeto.setBorrowed(false);

@@ -84,7 +84,13 @@ public class Graphics {
     text += " ------------------------------------------------";
     System.out.println(text);
     System.out.println();
-  }  
+  }
+
+  protected void displayReportOption() {
+    String text = ("| (R) - Relatorio |\n");    
+    System.out.println(text);
+    System.out.println();
+  }
 
   protected void displayRegisters(
     List<String> list,

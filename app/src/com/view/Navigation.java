@@ -61,6 +61,10 @@ public class Navigation {
       case '-':
         graphics.paginateRegisters(-1);
         break;
+      case 'r':
+      case 'R':
+        reportNavegation(controller);
+        break;
       default:
         break;
     }
@@ -202,5 +206,20 @@ public class Navigation {
     String response = controller.delete(consoleInput);
     System.out.println(response);
     Entrada.leiaString("Aperte ENTER para continuar...");
+  }
+
+  private void reportNavegation(IController controller) {
+    /* int repoType = Entrada.leiaInt(
+      "Selecione a data que quer filtrar\n(1) Data Saida\n(2) Data Entrada"
+    );
+    String dataInit = Entrada.leiaString(
+      "Digite a data inicial (formato dd/mm/aaaa"
+    );
+    String dataEnd = Entrada.leiaString(
+      "Digite a data final (formato dd/mm/aaaa"
+    );
+    String response = controller.generateReport(repoType, dataInit, dataEnd);
+    System.out.println(response);
+    Entrada.leiaString("Aperte ENTER para continuar..."); */
   }
 }

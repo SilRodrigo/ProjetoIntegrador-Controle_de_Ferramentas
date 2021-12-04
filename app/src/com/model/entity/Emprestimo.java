@@ -52,4 +52,8 @@ public class Emprestimo {
   public void setStatus(boolean status) {
       this.status = status;
   }
+
+  public void setDateIn(String dateIn) {
+      this.dateIn = dateIn;
+  }
 }
