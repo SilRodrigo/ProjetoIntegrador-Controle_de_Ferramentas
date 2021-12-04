@@ -12,6 +12,16 @@ public class ManutencaoDao {
     ManutencaoDao.manutencaoList.add(manutencao);
   }
 
+  public boolean update(Manutencao manutencao) {
+    for (Manutencao manutencaoOld : ManutencaoDao.manutencaoList) {
+      if (manutencaoOld.getId() == manutencao.getId()) {
+        manutencaoOld = manutencao;
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void exclude(int id) {
     ManutencaoDao.manutencaoList.remove(this.getById(id));
   }

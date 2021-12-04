@@ -31,7 +31,7 @@ public class ManutencaoController implements IController {
   @Override
   public String insert(List<String> list) {
     try {
-      manutencaoService.insert(list.get(0), Integer.parseInt(list.get(1)), true);
+      manutencaoService.insert(list.get(0), Integer.parseInt(list.get(1)), false);
       return "\nCadastrado com sucesso!";
     } catch (Exception e) {
       return "\nDados Invalidos para cadastro!";
@@ -61,13 +61,16 @@ public class ManutencaoController implements IController {
 
   @Override
   public List<String> requestEdit(int id) {
-    // TODO Auto-generated method stub
-    return null;
+    return manutencaoService.requestEdit(id);
   }
 
   @Override
   public boolean update(int id, int index, String newValue) {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      manutencaoService.update(id, index, newValue);
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 }

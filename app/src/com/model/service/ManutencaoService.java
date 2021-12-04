@@ -36,6 +36,24 @@ public class ManutencaoService {
     }
   }
 
+  public void update(int id, int index, String newValue) throws Exception {
+    Manutencao manutencao = getById(id);
+    switch (index) {
+      case 1: //Status
+        newValue = newValue.toUpperCase();
+        if (newValue.equals("F") || newValue.equals("FINALIZADO")) {
+          manutencao.setStatus(true);
+          ObjetoService objetoService = new ObjetoService();
+          Objeto objeto = objetoService.getById(manutencao.getObjetoId());
+          objeto.setInMaintenance(false);
+          objetoService.update(objeto);
+        }
+      default:
+        manutencaoDao.update(manutencao);
+    }
+    return;
+  }
+
   public void exclude(int id) throws Exception {
     manutencaoDao.exclude(id);
   }
@@ -57,7 +75,7 @@ public class ManutencaoService {
         ";" +
         new ObjetoService().getById(manutencao.getObjetoId()).getName() +
         ";" +
-        (manutencao.getStatus() ? "Em andamento" : "Finalizado")
+        (manutencao.getStatus() ? "Encerrada" : "Em andamento")
       );
     }
     return manutencaoList;
@@ -77,6 +95,15 @@ public class ManutencaoService {
         manutencao.getObjetoId()
       );
     }
+    return manutencaoList;
+  }
+
+  public List<String> requestEdit(int id) {
+    Manutencao manutencao = getById(id);
+    List<String> manutencaoList = new ArrayList<>();
+    if (manutencao == null) return manutencaoList;
+    manutencaoList.add("Status ((F)inalizado para encerrar a manutencao)");
+    manutencaoList.add((manutencao.getStatus() ? "Encerrada" : "Em andamento"));
     return manutencaoList;
   }
 }

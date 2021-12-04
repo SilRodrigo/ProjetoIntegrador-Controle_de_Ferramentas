@@ -50,9 +50,11 @@ public class Navigation {
       case 'E':
       case 'e':
         editNavegation(controller);
+        break;
       case 'X':
       case 'x':
         excludeNavegation(controller);
+        break;
       case '+':
         graphics.paginateRegisters(1);
         break;
@@ -178,6 +180,7 @@ public class Navigation {
     System.out.println("0 - Cancelar");
     System.out.println("");
     int index = Entrada.leiaInt("Digite o numero que deseja editar: ");
+    if (index == -1) return;
     switch (consoleInput) {
       case 0:
         return;
@@ -198,5 +201,6 @@ public class Navigation {
     int consoleInput = Entrada.leiaInt("Digite o id que deseja excluir: ");
     String response = controller.delete(consoleInput);
     System.out.println(response);
+    Entrada.leiaString("Aperte ENTER para continuar...");
   }
 }
