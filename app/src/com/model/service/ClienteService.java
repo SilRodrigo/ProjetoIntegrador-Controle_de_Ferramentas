@@ -26,14 +26,16 @@ public class ClienteService {
     switch (index) {
       case 1: //Nome
         cliente.setName(newValue);
+        break;
       case 2: //Endereco;
         cliente.setAddress(newValue);
+        break;
       case 3: //Numero
         int newValueInt = Integer.parseInt(newValue);
         cliente.setAddressNumber(newValueInt);
-      default:
-        clienteDao.update(cliente);
+        break;
     }
+    clienteDao.update(cliente);
     return;
   }
 

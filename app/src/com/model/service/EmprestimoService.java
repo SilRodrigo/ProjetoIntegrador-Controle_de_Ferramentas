@@ -57,9 +57,9 @@ public class EmprestimoService {
           objeto.setBorrowed(false);
           objetoService.update(objeto);
         }
-      default:
-        emprestimoDao.update(emprestimo);
+        break;
     }
+    emprestimoDao.update(emprestimo);
     return;
   }
 

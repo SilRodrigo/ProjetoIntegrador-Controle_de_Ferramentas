@@ -24,9 +24,9 @@ public class TipoObjetoService {
     switch (index) {
       case 1: //Nome
         tipoObjeto.setType(newValue);
-      default:
-        tipoObjetoDao.update(tipoObjeto);
+        break;
     }
+    tipoObjetoDao.update(tipoObjeto);
     return;
   }
 

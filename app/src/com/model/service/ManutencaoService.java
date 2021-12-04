@@ -48,9 +48,9 @@ public class ManutencaoService {
           objeto.setInMaintenance(false);
           objetoService.update(objeto);
         }
-      default:
-        manutencaoDao.update(manutencao);
+      break;
     }
+    manutencaoDao.update(manutencao);
     return;
   }
 

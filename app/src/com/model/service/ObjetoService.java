@@ -32,6 +32,7 @@ public class ObjetoService {
     switch (index) {
       case 1: //Nome
         objeto.setName(newValue);
+        break;
       case 2: //Status;
         newValue = newValue.toUpperCase();
         if (newValue.equals("A") || newValue.equals("ATIVO")) objeto.setStatus(
@@ -42,9 +43,9 @@ public class ObjetoService {
             objeto.isBorrowed() || objeto.isInMaintenance()
           ) throw new Exception(); else objeto.setStatus(false);
         }
-      default:
-        objetoDao.update(objeto);
+        break;
     }
+    objetoDao.update(objeto);
     return;
   }
 
