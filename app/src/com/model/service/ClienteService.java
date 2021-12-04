@@ -37,6 +37,10 @@ public class ClienteService {
     return;
   }
 
+  public void exclude(int id) throws Exception {
+    clienteDao.exclude(id);
+  }
+
   public Cliente getById(int id) {
     return clienteDao.getById(id);
   }

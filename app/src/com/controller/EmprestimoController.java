@@ -36,8 +36,13 @@ public class EmprestimoController implements IController {
   }
 
   @Override
-  public String delete() {
-    return null;
+  public String delete(int id) {
+    try {
+      this.emprestimoService.exclude(id);
+      return ("Exclusão realizada com sucesso");
+    } catch (Exception e) {
+      return e.toString();
+    }
   }
 
   @Override

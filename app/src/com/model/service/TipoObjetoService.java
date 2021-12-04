@@ -23,11 +23,15 @@ public class TipoObjetoService {
     TipoObjeto tipoObjeto = getById(id);
     switch (index) {
       case 1: //Nome
-        tipoObjeto.setType(newValue);      
+        tipoObjeto.setType(newValue);
       default:
         tipoObjetoDao.update(tipoObjeto);
     }
     return;
+  }
+
+  public void exclude(int id) throws Exception {
+    tipoObjetoDao.exclude(id);
   }
 
   public TipoObjeto getById(int id) {

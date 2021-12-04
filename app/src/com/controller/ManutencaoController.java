@@ -39,9 +39,13 @@ public class ManutencaoController implements IController {
   }
 
   @Override
-  public String delete() {
-    // TODO Auto-generated method stub
-    return null;
+  public String delete(int id) {
+    try {
+      this.manutencaoService.exclude(id);
+      return ("Exclusão realizada com sucesso");
+    } catch (Exception e) {
+      return e.toString();
+    }
   }
 
   @Override

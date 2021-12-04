@@ -38,6 +38,10 @@ public class EmprestimoService {
     emprestimoDao.insert(emprestimo);
   }
 
+  public void exclude(int id) throws Exception {
+    emprestimoDao.exclude(id);
+  }
+
   public void getById(int id) {}
 
   public List<String> getAllData(

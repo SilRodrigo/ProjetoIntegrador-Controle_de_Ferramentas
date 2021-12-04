@@ -30,8 +30,13 @@ public class ObjetoController implements IController {
   }
 
   @Override
-  public String delete() {
-    return null;
+  public String delete(int id) {
+    try {
+      this.objetoService.exclude(id);
+      return ("Exclusão realizada com sucesso");
+    } catch (Exception e) {
+      return e.toString();
+    }
   }
 
   @Override

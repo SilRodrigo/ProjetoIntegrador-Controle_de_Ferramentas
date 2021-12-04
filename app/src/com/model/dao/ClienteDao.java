@@ -12,6 +12,20 @@ public class ClienteDao {
     ClienteDao.clienteList.add(cliente);
   }
 
+  public boolean update(Cliente cliente) {
+    for (Cliente clienteOld : ClienteDao.clienteList) {
+      if (clienteOld.getId() == cliente.getId()) {
+        clienteOld = cliente;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void exclude(int id){
+    ClienteDao.clienteList.remove(this.getById(id));
+  }
+
   public Cliente getById(int id) {
     for (Cliente cliente : ClienteDao.clienteList) {
       if (cliente.getId() == id) {
@@ -29,13 +43,5 @@ public class ClienteDao {
     return clienteList.size();
   }
 
-  public boolean update(Cliente cliente) {
-    for (Cliente clienteOld : ClienteDao.clienteList) {
-      if (clienteOld.getId() == cliente.getId()) {
-        clienteOld = cliente;
-        return true;
-      }
-    }
-    return false;
-  }
+
 }

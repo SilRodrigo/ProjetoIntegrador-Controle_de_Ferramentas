@@ -17,18 +17,6 @@ public class ObjetoDao {
     return null;
   }
 
-  public int getLastIndex() {
-    return objetoList.size();
-  }
-
-  public void insert(Objeto objeto) {
-    ObjetoDao.objetoList.add(objeto);
-  }
-
-  public List<Objeto> getAll() {
-    return ObjetoDao.objetoList;
-  }
-
   public void update(Objeto newObjeto) {
     Objeto objeto = this.getById(newObjeto.getId());
     if (objeto == null) return;
@@ -47,5 +35,21 @@ public class ObjetoDao {
       ) objetoList.add(objeto);
     }
     return objetoList;
+  }
+
+  public void exclude(int id) {
+    ObjetoDao.objetoList.remove(this.getById(id));
+  }
+
+  public int getLastIndex() {
+    return objetoList.size();
+  }
+
+  public void insert(Objeto objeto) {
+    ObjetoDao.objetoList.add(objeto);
+  }
+
+  public List<Objeto> getAll() {
+    return ObjetoDao.objetoList;
   }
 }

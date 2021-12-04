@@ -6,19 +6,30 @@ import java.util.List;
 
 public class EmprestimoDao {
 
-  List<Emprestimo> emprestimoList = new ArrayList<Emprestimo>();
+  static List<Emprestimo> emprestimoList = new ArrayList<Emprestimo>();
 
-  public void getById(int id) {}
+  public Emprestimo getById(int id) {
+    for (Emprestimo emprestimo : EmprestimoDao.emprestimoList) {
+      if (emprestimo.getId() == id) {
+        return emprestimo;
+      }
+    }
+    return null;
+  }
+
+  public void exclude(int id) {
+    EmprestimoDao.emprestimoList.remove(this.getById(id));
+  }
 
   public int getLastIndex() {
     return emprestimoList.size();
   }
 
   public List<Emprestimo> getAll() {
-    return this.emprestimoList;
+    return EmprestimoDao.emprestimoList;
   }
 
   public void insert(Emprestimo objeto) {
-    this.emprestimoList.add(objeto);
+    EmprestimoDao.emprestimoList.add(objeto);
   }
 }

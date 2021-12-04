@@ -50,6 +50,9 @@ public class Navigation {
       case 'E':
       case 'e':
         editNavegation(controller);
+      case 'X':
+      case 'x':
+        excludeNavegation(controller);
       case '+':
         graphics.paginateRegisters(1);
         break;
@@ -184,9 +187,16 @@ public class Navigation {
           index,
           Entrada.leiaString("Digite o novo valor do campo: ")
         );
-        if (updated) System.out.println("Atualizado com Sucesso!");
-        else System.out.println("Erro na atualizacao do cadastro!");        
+        if (updated) System.out.println(
+          "Atualizado com Sucesso!"
+        ); else System.out.println("Erro na atualizacao do cadastro!");
     }
     return;
+  }
+
+  private void excludeNavegation(IController controller) {
+    int consoleInput = Entrada.leiaInt("Digite o id que deseja excluir: ");
+    String response = controller.delete(consoleInput);
+    System.out.println(response);
   }
 }

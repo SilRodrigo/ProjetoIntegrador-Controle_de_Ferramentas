@@ -24,8 +24,13 @@ public class ClienteController implements IController {
   }
 
   @Override
-  public String delete() {
-    return null;
+  public String delete(int id) {
+    try {
+      this.clienteService.exclude(id);
+      return ("Exclusão realizada com sucesso");
+    } catch (Exception e) {
+      return e.toString();
+    }
   }
 
   @Override

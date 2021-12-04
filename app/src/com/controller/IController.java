@@ -17,7 +17,7 @@ public interface IController {
 
   public boolean update(int id, int index, String newValue);
 
-  public String delete();
+  public String delete(int id);
 
   public String getControllerBaseName();
 }

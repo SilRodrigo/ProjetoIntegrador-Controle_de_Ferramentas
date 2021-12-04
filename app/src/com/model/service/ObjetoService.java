@@ -37,7 +37,7 @@ public class ObjetoService {
         if (newValue.equals("A") || newValue.equals("ATIVO")) objeto.setStatus(
           true
         );
-        if (newValue.equals("I") || newValue.equals("INATIVO")) {
+        if (newValue.equals("B") || newValue.equals("BAIXADO")) {
           if (
             objeto.isBorrowed() || objeto.isInMaintenance()
           ) throw new Exception(); else objeto.setStatus(false);
@@ -46,6 +46,10 @@ public class ObjetoService {
         objetoDao.update(objeto);
     }
     return;
+  }
+
+  public void exclude(int id) throws Exception {
+    objetoDao.exclude(id);
   }
 
   public Objeto getById(int id) {
@@ -102,7 +106,7 @@ public class ObjetoService {
         ";" +
         (objeto.isInMaintenance() ? "Sim" : "Nao") +
         ";" +
-        (objeto.getStatus() ? "Ativo" : "Inativo")
+        (objeto.getStatus() ? "Ativo" : "Baixado")
       );
     }
     return objetoList;
@@ -112,9 +116,9 @@ public class ObjetoService {
     Objeto objeto = getById(id);
     List<String> objetoList = new ArrayList<>();
     if (objeto == null) return objetoList;
-    objetoList.add("Nome;Status (Digite (A)tivo ou (I)nativo para alterar)");
+    objetoList.add("Nome;Status (Digite (A)tivo ou (B)aixado para alterar)");
     objetoList.add(
-      objeto.getName() + ";" + (objeto.getStatus() ? "Ativo" : "Inativo")
+      objeto.getName() + ";" + (objeto.getStatus() ? "Ativo" : "Baixado")
     );
     return objetoList;
   }

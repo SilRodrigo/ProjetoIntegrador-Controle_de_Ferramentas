@@ -19,8 +19,13 @@ public class TipoObjetoController implements IController {
   }
 
   @Override
-  public String delete() {
-    return null;
+  public String delete(int id) {
+    try {
+      this.tipoObjetoService.exclude(id);
+      return ("Exclusão realizada com sucesso");
+    } catch (Exception e) {
+      return e.toString();
+    }
   }
 
   @Override
@@ -40,12 +45,12 @@ public class TipoObjetoController implements IController {
 
   @Override
   public boolean findId(int id) {
-    TipoObjeto tipoObjeto = this.tipoObjetoService.getById(id);    
-    if (tipoObjeto == null){
+    TipoObjeto tipoObjeto = this.tipoObjetoService.getById(id);
+    if (tipoObjeto == null) {
       System.out.println("\nNao existe esse Id cadastrado!");
       Entrada.leiaString("Aperte ENTER para continuar...");
       return false;
-    } 
+    }
     return true;
   }
 
@@ -68,5 +73,4 @@ public class TipoObjetoController implements IController {
       return false;
     }
   }
-
 }
