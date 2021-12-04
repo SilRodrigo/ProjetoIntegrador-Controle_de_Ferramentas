@@ -17,6 +17,16 @@ public class EmprestimoDao {
     return null;
   }
 
+  public boolean update(Emprestimo emprestimo) {
+    for (Emprestimo emprestimoOld : EmprestimoDao.emprestimoList) {
+      if (emprestimoOld.getId() == emprestimo.getId()) {
+        emprestimoOld = emprestimo;
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void exclude(int id) {
     EmprestimoDao.emprestimoList.remove(this.getById(id));
   }

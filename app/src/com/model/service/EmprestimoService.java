@@ -38,11 +38,32 @@ public class EmprestimoService {
     emprestimoDao.insert(emprestimo);
   }
 
-  public void exclude(int id) throws Exception {
-    emprestimoDao.exclude(id);
+  public void update(int id, int index, String newValue) throws Exception {
+    Emprestimo emprestimo = getById(id);
+    switch (index) {
+      case 1: //Status
+        newValue = newValue.toUpperCase();
+        if (newValue.equals("D") || newValue.equals("DEVOLVIDO")) {
+          emprestimo.setStatus(false);
+          ObjetoService objetoService = new ObjetoService();
+          Objeto objeto = objetoService.getById(emprestimo.getObjetoId());
+          objeto.setBorrowed(false);
+          objetoService.update(objeto);
+        }
+      default:
+        emprestimoDao.update(emprestimo);
+    }
+    return;
   }
 
-  public void getById(int id) {}
+  public void exclude(int id) throws Exception {
+    throw new Exception("Exclusão não habilitada para esse módulo");
+    /* emprestimoDao.exclude(id); */
+  }
+
+  public Emprestimo getById(int id) {
+    return emprestimoDao.getById(id);
+  }
 
   public List<String> getAllData(
     ObjetoService objetoService,
@@ -60,7 +81,7 @@ public class EmprestimoService {
         ";" +
         emprestimo.getDateIn() +
         ";" +
-        objetoService.getById(emprestimo.getObjectId()).getName() +
+        objetoService.getById(emprestimo.getObjetoId()).getName() +
         ";" +
         clienteService.getById(emprestimo.getClienteId()).getName() +
         ";" +
@@ -79,11 +100,22 @@ public class EmprestimoService {
       emprestimoList.add(
         emprestimo.getId() +
         ";" +
-        emprestimo.getObjectId() +
+        emprestimo.getObjetoId() +
         ";" +
         emprestimo.getClienteId()
       );
     }
+    return emprestimoList;
+  }
+
+  public List<String> requestEdit(int id) {
+    Emprestimo emprestimo = getById(id);
+    List<String> emprestimoList = new ArrayList<>();
+    if (emprestimo == null) return emprestimoList;
+    emprestimoList.add(
+      "Situacao (Digite (D)evolvido para encerrar o emprestimo)"
+    );
+    emprestimoList.add((emprestimo.getStatus() ? "Emprestado" : "Devolvido"));
     return emprestimoList;
   }
 }

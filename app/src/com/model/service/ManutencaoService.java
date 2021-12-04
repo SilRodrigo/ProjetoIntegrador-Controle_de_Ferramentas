@@ -55,7 +55,8 @@ public class ManutencaoService {
   }
 
   public void exclude(int id) throws Exception {
-    manutencaoDao.exclude(id);
+    throw new Exception("Exclusão não habilitada para esse módulo");
+    /* manutencaoDao.exclude(id); */
   }
 
   public Manutencao getById(int id) {

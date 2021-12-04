@@ -29,7 +29,7 @@ public class Emprestimo {
     return id;
   }
 
-  public int getObjectId() {
+  public int getObjetoId() {
     return objetoId;
   }
 
@@ -47,5 +47,9 @@ public class Emprestimo {
 
   public boolean getStatus() {
     return status;
+  }
+
+  public void setStatus(boolean status) {
+      this.status = status;
   }
 }
